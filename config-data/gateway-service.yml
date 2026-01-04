@@ -1,6 +1,39 @@
 server:
-  port: 8070
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 spring:
   cloud:
     gateway:
-      default-filters: []
+      discovery:
+        locator:
+          enabled: true # Permite encontrar servicios automáticamente
+          lower-case-service-id: true
+      
+      # Aquí definimos las rutas manuales [cite: 1895]
+      routes:
+        # Ruta para Clientes
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE # lb = Load Balancer (busca en Eureka)
+          predicates:
+            - Path=/api/customers/** # Si la URL empieza así, mándalo allí
+            
+        # Ruta para Cuentas
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/api/accounts/**
+
+# Configuración básica de seguridad (TEMPORAL: Permitir todo por ahora)
+# Más adelante aquí implementaremos JWT
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Esto se configurará cuando hagamos la clase de seguridad
+          jwk-set-uri: http://localhost:8080/.well-known/jwks.json

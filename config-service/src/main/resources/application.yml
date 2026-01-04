@@ -1,0 +1,23 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-service
+  security:
+    user:
+      name: admin
+      password: 12345
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///C:/Users/Eduardo/OneDrive/Escritorio/ProyectoFinal/SistemaBancario_Workspace/config-data
+          default-label: main
+          clone-on-start: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

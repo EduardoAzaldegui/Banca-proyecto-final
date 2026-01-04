@@ -1,6 +1,45 @@
 server:
   port: 8081
+
 spring:
+  application:
+    name: customer-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/bank_customers_db
+      # Base de datos EXCLUSIVA para clientes [cite: 8]
+      uri: mongodb://localhost:27017/bank_customers
+      auto-index-creation: true
+  main:
+    web-application-type: reactive # Obligatorio por WebFlux 
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+# Configuración de Actuator (Métricas y Salud)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Configuración de OpenAPI (Swagger) para documentación 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+
+# Logs para depuración [cite: 15]
+logging:
+  level:
+    root: INFO
+    com.banco.customer: DEBUG
+    org.springframework.data.mongodb.core.ReactiveMongoTemplate: DEBUG

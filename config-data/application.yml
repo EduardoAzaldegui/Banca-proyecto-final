@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: config-data
+logging:
+  level:
+    root: INFO

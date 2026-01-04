@@ -14,13 +14,13 @@ spring:
           enabled: true # Permite encontrar servicios automáticamente
           lower-case-service-id: true
       
-      # Aquí definimos las rutas manuales [cite: 1895]
+      # [cite_start]Aquí definimos las rutas manuales [cite: 1895]
       routes:
         # Ruta para Clientes
         - id: customer-service
           uri: lb://CUSTOMER-SERVICE # lb = Load Balancer (busca en Eureka)
           predicates:
-            - Path=/api/customers/** # Si la URL empieza así, mándalo allí
+            - Path=/api/customers/**
             
         # Ruta para Cuentas
         - id: account-service
@@ -28,9 +28,7 @@ spring:
           predicates:
             - Path=/api/accounts/**
 
-# Configuración básica de seguridad (TEMPORAL: Permitir todo por ahora)
-# Más adelante aquí implementaremos JWT
-spring:
+  # Fíjate que 'security' ahora está alineado dentro del mismo bloque 'spring' de arriba
   security:
     oauth2:
       resourceserver:

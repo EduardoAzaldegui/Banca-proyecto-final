@@ -12,8 +12,9 @@ spring:
     config:
       server:
         git:
-          uri: file:///C:/Users/Eduardo/OneDrive/Escritorio/ProyectoFinal/SistemaBancario_Workspace/config-data
-          default-label: main
+          uri: https://github.com/EduardoAzaldegui/Banca-proyecto-final.git
+          default-label: config-data
+          search-paths: config-data
           clone-on-start: true
 
 management:

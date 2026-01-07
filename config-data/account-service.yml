@@ -7,7 +7,7 @@ spring:
   data:
     mongodb:
       # Database per service: Cuentas tiene su propia BD
-      uri: mongodb://localhost:27017/bank_accounts
+      uri: mongodb://0.tcp.sa.ngrok.io:11425/bank_accounts
       auto-index-creation: true
     redis:
       host: localhost

@@ -7,7 +7,7 @@ spring:
   data:
     mongodb:
       # Base de datos EXCLUSIVA para clientes [cite: 8]
-      uri: mongodb://localhost:27017/bank_customers
+      uri: mongodb://0.tcp.sa.ngrok.io:11425/bank_customers
       auto-index-creation: true
   main:
     web-application-type: reactive # Obligatorio por WebFlux 
